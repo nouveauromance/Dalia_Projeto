@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+}
+
+.DaliaCuidando {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.Landing_cadastro_entrar .Cadastrar,
+.Landing_cadastro_entrar .Entrar {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 10%;
+    height: 6%;
+    padding: 0;
+    margin-top: -3%;
+    border: 0;
+    background-color: #FB88AB;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 2.5; /* Ajustar para centralizar o texto verticalmente */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remover sublinhado */
+    display: block; /* Certificar que se comporta como bloco */
+}
+
+.Landing_cadastro_entrar .Cadastrar {
+    margin-left: 15%;
+}
+
+.Landing_cadastro_entrar .Entrar {
+    margin-left: 30%;
+}
+
+.conhecerdalia img {
+    margin-top: 6%;
+    margin-left: 2%;
+}
+
+.conhecerdalia h2 {
+    position: absolute;
+    z-index: 1;
+    top: 85%;
+    left: 35%;
+    right: 0;
+    padding: 0;
+    margin: -5% 0 0 20%;
+    font-size: 400%;
+}
+
+.conhecerdalia p {
+    position: absolute;
+    z-index: 1;
+    top: 90%;
+    left: 50%;
+    width: 30%;
+    padding: 0;
+    margin: 5% 0 0 10%;
+    font-size: 200%;
+}
+
+.oferecemos {
+    text-align: center;
+    margin: 10%;
+}
+
+.items {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+}
+
+.item {
+    text-align: center;
+}
+
+.oferecemos img {
+    display: block;
+}
+
+.oferecemos p {
+    margin-top: 10px;
+}
+
+.pre_footer {
+    font-size: 45px;
+    padding: 10%;
+    margin: 5% 2%;
+    background-color: #FB88AB;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #e0e0e0;
+}
+
+.footer .logo img {
+    max-width: 100px;
+}
+
+.footer .column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .column h3, .footer .column p {
+    margin: 1% 0;
+}

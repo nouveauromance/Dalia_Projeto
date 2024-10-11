@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Dália</title>
+    <link rel="shortcut icon" type="imagex/png" href="/Dália cadastro/img/Dalia 2.0.png">
+    <link rel="stylesheet" href="calendario.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/img/navbar/Logo_dalia.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li class="Home"><a href="/home/index.html"><img src="/img/navbar/casa.jpg" alt=""></a></li>
+                <li class="Calendario"><a href="/calendario/calendario.html"><img src="/img/navbar/Calendario.png"></a></li>
+                <li class="Ajuda"><a href="/fórum/forum.html"><img src="/img/navbar/sac.png"></a></li>
+                <li class="Forum"><a href="/principal/principal.html"><img src="/img/navbar/Flor.png" alt=""></a></li>
+                <li class="dropdown">
+                    <a class="Perfil" href="#" id="perfilDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/img/navbar/profile.png">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+                        <form class="p-4">
+                            <div class="profile">
+                                <img src="/img/navbar/profile.png" alt="Perfil">
+                            </div>
+                            <div class="form-group">
+                                <label for="nome">Nome</label>
+                                <p id="nome"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="sobrenome">Sobrenome</label>
+                                <p id="sobrenome"></p>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ajuda</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="calendar-container">
+            <div class="icon"></div>
+            <div class="month-year" id="month-year"></div>
+            <div class="icon"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="fimsemana">D</th>
+                    <th class="semana">S</th>
+                    <th class="semana">T</th>
+                    <th class="semana">Q</th>
+                    <th class="semana">Q</th>
+                    <th class="semana">S</th>
+                    <th class="fimsemana">S</th>
+
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+
+            </tbody>
+        </table>
+    </div>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="calendario.js"></script>
+</body>
+</html>
