@@ -46,27 +46,27 @@ function P5() {
     });
 }
 
-document.querySelectorAll('.B0').forEach(button => {
+document.querySelectorAll('.B0').for(button => {
     button.addEventListener('click', P0);
 });
 
-document.querySelectorAll('.B1').forEach(button => {
+document.querySelectorAll('.B1').for(button => {
     button.addEventListener('click', P1);
 });
 
-document.querySelectorAll('.B2').forEach(button => {
+document.querySelectorAll('.B2').for(button => {
     button.addEventListener('click', P2);
 });
 
-document.querySelectorAll('.B3').forEach(button => {
+document.querySelectorAll('.B3').for(button => {
     button.addEventListener('click', P3);
 });
 
-document.querySelectorAll('.B4').forEach(button => {
+document.querySelectorAll('.B4').for(button => {
     button.addEventListener('click', P4);
 });
 
-document.querySelectorAll('.B5').forEach(button => {
+document.querySelectorAll('.B5').for(button => {
     button.addEventListener('click', P5);
 });
 
@@ -74,12 +74,12 @@ window.addEventListener('load', () => {
     window.scrollTo(0, 0);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formulario-ciclo');
     const cycleLengthContainer = document.getElementById('duracao-ciclo-container');
     let isCycleRegular = true;
 
-    document.querySelectorAll('.irregular').forEach(button => {
+    document.querySelectorAll('.irregular').for(button => {
         button.addEventListener('click', () => {
             cycleLengthContainer.style.display = 'none';
             document.getElementById('duracao-ciclo').required = false;
@@ -93,13 +93,13 @@ document.addEventListener('DOMContentLoaded', function() {
         isCycleRegular = true;
     });
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const lastPeriodDate = new Date(document.getElementById('ultimo-dia-menstruacao').value);
-        const cycleLength = parseInt(document.getElementById('duracao-ciclo').value);
+        const cycleLength = Number.parseInt(document.getElementById('duracao-ciclo').value);
 
-        if (!lastPeriodDate || (isCycleRegular && isNaN(cycleLength))) {
+        if (!lastPeriodDate || (isCycleRegular && Number.isNaN(cycleLength))) {
             alert('Por favor, insira dados válidos.');
             return;
         }
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         P5();
     });
 
-    document.querySelector('.b6').addEventListener('click', function() {
+    document.querySelector('.b6').addEventListener('click', () => {
         window.location.href = '/Dália login/login.html';
     });
 });

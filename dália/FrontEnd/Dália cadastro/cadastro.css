@@ -47,7 +47,7 @@ button{
     padding: 20px;
     border: none;
     border-radius: 3px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; */
     font-size: 20px;
     background-color: #ef5b99;
     color: white;
@@ -63,7 +63,7 @@ a{
     padding: 10px;
     border: none;
     border-radius: 3px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; */
     font-size: 20px;
     background-color: #ef5b99;
     color: white;
