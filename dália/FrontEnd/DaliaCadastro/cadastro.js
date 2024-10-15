@@ -1,5 +1,5 @@
 async function sendData(userData) {
-	try{
+	try {
 		fetch("http://192.168.1.53:3333/user", {
 			method: "POST",
 			headers: {
@@ -10,7 +10,8 @@ async function sendData(userData) {
 			try {
 				if (response.status === 201) {
 					alert("Dados salvos com sucesso!");
-					window.location.href = "/Dália Perguntas/perguntas.html";
+					// Redireciona para a página de login com o caminho correto
+					window.location.href = "/dália/FrontEnd/DaliaLogin/login.html"; // Altere o caminho conforme necessário
 				} else {
 					alert("Erro ao salvar os dados. Por favor, tente novamente.");
 				}
@@ -20,12 +21,12 @@ async function sendData(userData) {
 		}).catch((error) => {
 			console.error("Erro na requisição:", error);
 			alert("Erro ao salvar os dados. Por favor, tente novamente.");
-    });
-	}
-	catch(error){
+		});
+	} catch (error) {
 		console.error("Erro na requisição:", error);
 		alert("Erro ao salvar os dados. Por favor, tente novamente.");
 	}
+}
 
 document.addEventListener("DOMContentLoaded", () => {
 	const form = document.querySelector("form");
@@ -43,21 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (password === passconfirmation) {
 				const userData = {
 					nome: name,
-          			sobrenome: lastname,
+					sobrenome: lastname,
 					email: email,
 					senha: password,
 				};
 				sendData(userData);
 				localStorage.setItem("userData", JSON.stringify(userData));
-				alert("Dados salvos com sucesso!");
+				// O alerta e o redirecionamento foram movidos para dentro da função sendData
 			} else {
-				alert(
-					"As senhas não coincidem. Por favor, verifique e tente novamente.",
-				);
+				alert("As senhas não coincidem. Por favor, verifique e tente novamente.");
 			}
 		} else {
 			alert("Por favor, preencha todos os campos antes de prosseguir.");
 		}
 	});
 });
-}

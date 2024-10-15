@@ -31,10 +31,21 @@ const loginUserController = async (req, res) => {
 	return res.status(200).json({user});
 };
 
+const getUserIdByEmail = async (req, res) => {
+    const email = req.body.email; 
+    const user = await userModel.findUserByEmail(email);
+    if (!user) {
+        return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+    return res.status(200).json({ usuario_id: user.id });
+};
+
+
 module.exports = {
 	getAllController,
 	createUserController,
 	deleteUserController,
 	updateUserController,
 	loginUserController,
+	getUserIdByEmail
 };

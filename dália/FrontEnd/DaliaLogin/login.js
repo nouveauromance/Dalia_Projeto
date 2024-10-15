@@ -14,10 +14,10 @@ async function sendLogin(email, senha) {
 		console.log(responseData);
 		if (responseData.user.loginUser === 1) {
 			alert("Login realizado com sucesso");
-			window.location.href = "/home/index.html";
+			window.location.href = "/dália/FrontEnd/DaliaPerguntas/perguntas.html";
 		} else {
 			alert("Usuário não encontrado");
-            window.location.reload();
+			window.location.reload();
 		}
 	} catch (error) {
 		alert("Ocorreu um erro ao tentar realizar login. Tente novamente.");
