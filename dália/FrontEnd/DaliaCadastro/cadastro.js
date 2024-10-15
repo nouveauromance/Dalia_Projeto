@@ -10,8 +10,7 @@ async function sendData(userData) {
 			try {
 				if (response.status === 201) {
 					alert("Dados salvos com sucesso!");
-					// Redireciona para a página de login com o caminho correto
-					window.location.href = "/dália/FrontEnd/DaliaLogin/login.html"; // Altere o caminho conforme necessário
+					window.location.href = "/dália/FrontEnd/DaliaLogin/login.html"; 
 				} else {
 					alert("Erro ao salvar os dados. Por favor, tente novamente.");
 				}
@@ -50,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				};
 				sendData(userData);
 				localStorage.setItem("userData", JSON.stringify(userData));
-				// O alerta e o redirecionamento foram movidos para dentro da função sendData
 			} else {
 				alert("As senhas não coincidem. Por favor, verifique e tente novamente.");
 			}
