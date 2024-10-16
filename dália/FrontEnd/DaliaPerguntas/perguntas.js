@@ -1,125 +1,163 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const formularios = document.querySelectorAll(".formulario");
-    let currentForm = 0;
+	const formularios = document.querySelectorAll(".formulario");
+	let currentForm = 0;
 
-    // Inicializa as respostas
-    const responses = {
-        usuario_id: null, // O ID do usuário será preenchido depois
-        idade: null,
-        menstruacao_regular: null,
-        usa_contraceptivo: null,
-        tipo_contraceptivo: null,
-        ultimo_dia_menstruacao: null,
-        duracao_ciclo: null
-    };
+	const responses = {
+		usuario_id: null,
+		idade: null,
+		menstruacao_regular: null,
+		usa_contraceptivo: null,
+		tipo_contraceptivo: null,
+		ultimo_dia_menstruacao: null,
+		duracao_ciclo: null,
+	};
+	const idUser = localStorage.getItem("idUser");
+	responses.usuario_id = idUser;
+	const nextForm = () => {
+		formularios[currentForm].classList.add("hidden");
+		currentForm++;
+		if (currentForm < formularios.length) {
+			formularios[currentForm].classList.remove("hidden");
+		} else {
+			enviarRespostas();
+		}
+	};
 
-    // Função para pegar o ID do usuário baseado no e-mail
-    const getUserIdByEmail = async (email) => {
-        try {
-            const response = await fetch(`http://localhost:3000/user?email=${encodeURIComponent(email)}`);
-            if (!response.ok) {
-                throw new Error("Erro ao buscar usuário");
-            }
-            const userData = await response.json();
-            return userData[0] ? userData[0].id : null; // Pega o primeiro usuário encontrado
-        } catch (error) {
-            console.error("Erro ao buscar ID do usuário:", error);
-            return null;
-        }
-    };
+	const previousForm = () => {
+		formularios[currentForm].classList.add("hidden");
+		currentForm--;
+		formularios[currentForm].classList.remove("hidden");
+	};
 
-    // Chama a função para obter o ID do usuário
-    const userEmail = localStorage.getItem("user_email"); // Supondo que o e-mail do usuário está no localStorage
-    responses.usuario_id = await getUserIdByEmail(userEmail);
+	const enviarRespostas = async () => {
+		console.log("Respostas antes de enviar:", responses);
+		try {
+			const response = await fetch("http://localhost:3333/questions", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(responses),
+			});
 
-    const nextForm = () => {
-        formularios[currentForm].style.display = "none";
-        currentForm++;
-        if (currentForm < formularios.length) {
-            formularios[currentForm].style.display = "block";
-        } else {
-            // Se todas as perguntas foram respondidas, envie as respostas
-            enviarRespostas();
-        }
-    };
+			if (response.ok) {
+				console.log("Respostas enviadas com sucesso!");
+				window.location.href = "/dália/FrontEnd/home/index.html";
+			} else {
+				console.error("Erro ao enviar as respostas");
+			}
+		} catch (error) {
+			console.error("Erro na requisição:", error);
+		}
+	};
 
-    const previousForm = () => {
-        formularios[currentForm].style.display = "none";
-        currentForm--;
-        formularios[currentForm].style.display = "block";
-    };
+	formularios.forEach((formulario, index) => {
+		if (index !== 0) {
+			formulario.classList.add("hidden");
+		}
+	});
 
-    const enviarRespostas = async () => {
-        try {
-            const response = await fetch("http://localhost:3000/questions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(responses)
-            });
+	document.querySelectorAll(".r1 input[type='radio']").forEach((input) => {
+		input.addEventListener("click", () => {
+			responses.idade = input.nextElementSibling.textContent;
+			console.log("idade:", responses.idade);
+			nextForm();
+		});
+	});
 
-            if (response.ok) {
-                console.log("Respostas enviadas com sucesso!");
-            } else {
-                console.error("Erro ao enviar as respostas");
-            }
-        } catch (error) {
-            console.error("Erro na requisição:", error);
-        }
-    };
+	document.querySelectorAll(".r2 input[type='radio']").forEach((input) => {
+		input.addEventListener("click", () => {
+			responses.menstruacao_regular = input.value;
+			console.log("menstruacao_regular:", responses.menstruacao_regular);
+			nextForm();
+		});
+	});
 
-    // Inicializa o primeiro formulário
-    formularios.forEach((formulario, index) => {
-        if (index !== 0) {
-            formulario.style.display = "none";
-        }
-    });
+	document.querySelectorAll("#section3 input[type='radio']").forEach((input) => {
+		input.addEventListener("click", () => {
+			responses.usa_contraceptivo = input.value;
+			console.log(responses.usa_contraceptivo);
+			nextForm();
+		});
+	});
 
-    // Eventos para as perguntas
+	document.querySelectorAll(".r4 input[type='radio']").forEach((input) => {
+		input.addEventListener("click", () => {
+			responses.tipo_contraceptivo = input.value;
+			console.log(responses.tipo_contraceptivo);
+			nextForm();
+		});
+	});
 
-    // Evento para as perguntas de idade
-    document.querySelectorAll(".r1 .botao").forEach((button) => {
-        button.addEventListener("click", () => {
-            responses.idade = button.textContent;
-            nextForm();
-        });
-    });
+	document.querySelector(".btn__fim").addEventListener("click", (e) => {
+		e.preventDefault();
+		const duracaoCiclo = document.getElementById("periodo").value;
 
-    // Evento para a pergunta sobre menstruação regular
-    document.querySelectorAll(".r2 .botao").forEach((button) => {
-        button.addEventListener("click", () => {
-            responses.menstruacao_regular = button.textContent === "Sim";
-            nextForm();
-        });
-    });
+		if (duracaoCiclo < 20) {
+			alert("A duração do ciclo não pode ser menor que 20 dias.");
+			return;
+		}
 
-    // Evento para a pergunta sobre contraceptivos
-    document.querySelectorAll(".r3 .botao").forEach((button) => {
-        button.addEventListener("click", () => {
-            responses.usa_contraceptivo = button.textContent === "Sim";
-            nextForm();
-        });
-    });
+		responses.ultimo_dia_menstruacao =
+			document.getElementById("ultima-menstruacao").value;
+		responses.duracao_ciclo = duracaoCiclo;
+		enviarRespostas();
+	});
 
-    // Evento para o tipo de contraceptivo
-    document.querySelectorAll(".r4 .botao").forEach((button) => {
-        button.addEventListener("click", () => {
-            responses.tipo_contraceptivo = button.textContent;
-            nextForm();
-        });
-    });
+	document.querySelectorAll(".volta").forEach((button) => {
+		button.addEventListener("click", previousForm);
+	});
 
-    // Evento para o último formulário de data e ciclo
-    document.getElementById("formulario-ciclo").addEventListener("submit", (e) => {
-        e.preventDefault();
-        responses.ultimo_dia_menstruacao = document.getElementById("ultimo-dia-menstruacao").value;
-        responses.duracao_ciclo = document.getElementById("duracao-ciclo").value;
-        enviarRespostas();
-    });
+	function showSection(sectionId) {
+		document.querySelectorAll(".section").forEach((section) => {
+			section.classList.remove("active");
+			section.style.display = "none";
+		});
 
-    // Botões de voltar
-    document.querySelectorAll(".volta").forEach((button) => {
-        button.addEventListener("click", previousForm);
-    });
+		const newSection = document.getElementById(sectionId);
+		if (newSection) {
+			newSection.style.display = "block";
+			setTimeout(() => {
+				newSection.classList.add("active");
+			}, 10);
+		}
+	}
+
+	window.addEventListener("load", () => {
+		showSection("section1");
+	});
+
+	document.querySelectorAll(".painel__idade").forEach((card) => {
+		card.addEventListener("click", () => {
+			showSection("section2");
+		});
+	});
+
+	document.querySelectorAll(".B0").forEach((button) => {
+		button.addEventListener("click", () => showSection("section1"));
+	});
+
+	document.querySelectorAll(".B1").forEach((button) => {
+		button.addEventListener("click", () => showSection("section2"));
+	});
+
+	document.querySelectorAll(".B2").forEach((button) => {
+		button.addEventListener("click", () => showSection("section3"));
+	});
+
+	document.querySelectorAll(".B3").forEach((button) => {
+		button.addEventListener("click", () => showSection("section4"));
+	});
+
+	document.querySelectorAll(".B4").forEach((button) => {
+		button.addEventListener("click", () => showSection("section5"));
+	});
+
+	document.querySelectorAll(".B5").forEach((button) => {
+		button.addEventListener("click", () => showSection("section6"));
+	});
+
+	flatpickr("#ultima-menstruacao", {
+		dateFormat: "Y-m-d",
+	});
 });

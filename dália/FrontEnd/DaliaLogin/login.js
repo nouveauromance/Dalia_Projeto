@@ -1,41 +1,43 @@
 async function sendLogin(email, senha) {
-	try {
-		const response = await fetch("http://192.168.1.53:3333/user/login", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				email: email,
-				senha: senha,
-			}),
-		});
-		const responseData = await response.json();
-		console.log(responseData);
-		if (responseData.user.loginUser === 1) {
-			alert("Login realizado com sucesso");
-			window.location.href = "/dália/FrontEnd/DaliaPerguntas/perguntas.html";
-		} else {
-			alert("Usuário não encontrado");
-			window.location.reload();
-		}
-	} catch (error) {
-		alert("Ocorreu um erro ao tentar realizar login. Tente novamente.");
-		console.error("Erro ao realizar login:", error);
-	}
+    try {
+        const response = await fetch("http://192.168.1.53:3333/user/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                senha: senha,
+            }),
+        });
+        const responseData = await response.json();
+        console.log(responseData);
+        if (responseData.user != null) {
+            alert("Login realizado com sucesso");
+            localStorage.setItem("idUser", JSON.stringify(responseData.user));
+            console.log("Email:", email);
+            window.location.href = "/dália/FrontEnd/DaliaPerguntas/perguntas.html";
+        } else {
+            alert("Usuário não encontrado");
+            window.location.reload();
+        }
+    } catch (error) {
+        alert("Ocorreu um erro ao tentar realizar login. Tente novamente.");
+        console.error("Erro ao realizar login:", error);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	const form = document.querySelector("form");
+    const loginButton = document.querySelector(".botaoLogin");
 
-	form.addEventListener("submit", (event) => {
-		event.preventDefault();
+    loginButton.addEventListener("click", (event) => {
+        event.preventDefault();
 
-		const emailInput = document.getElementById("exampleInputEmail1");
-		const passwordInput = document.getElementById("exampleInputPassword1");
+        const emailInput = document.getElementById("exampleInputEmail1");
+        const passwordInput = document.getElementById("exampleInputPassword1");
 
-		const email = emailInput.value;
-		const password = passwordInput.value;
-		sendLogin(email, password);
-	});
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        sendLogin(email, password);
+    });
 });

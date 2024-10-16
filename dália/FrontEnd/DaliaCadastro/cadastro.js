@@ -1,26 +1,25 @@
 async function sendData(userData) {
 	try {
-		fetch("http://192.168.1.53:3333/user", {
+		const response = await fetch("http://192.168.1.53:3333/user", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(userData),
-		}).then((response) => {
-			try {
-				if (response.status === 201) {
-					alert("Dados salvos com sucesso!");
-					window.location.href = "/dália/FrontEnd/DaliaLogin/login.html"; 
-				} else {
-					alert("Erro ao salvar os dados. Por favor, tente novamente.");
-				}
-			} catch (error) {
-				console.log("Erro ao salvar os dados. Por favor, tente novamente.", error);
-			} 
-		}).catch((error) => {
-			console.error("Erro na requisição:", error);
-			alert("Erro ao salvar os dados. Por favor, tente novamente.");
 		});
+
+		// Verifica se a requisição foi bem-sucedida
+		const responseData = await response.json(); // Adiciona parsing do JSON da resposta
+		console.log("Resposta do servidor:", responseData); // Log para ver detalhes da resposta
+
+		if (response.status === 201) {
+			alert("Dados salvos com sucesso!");
+			window.location.href = "/dália/FrontEnd/DaliaLogin/login.html";
+		} else {
+			// Log para ver detalhes do erro
+			console.error("Erro ao salvar os dados:", responseData);
+			alert("Erro ao salvar os dados. Por favor, tente novamente.");
+		}
 	} catch (error) {
 		console.error("Erro na requisição:", error);
 		alert("Erro ao salvar os dados. Por favor, tente novamente.");
@@ -28,9 +27,9 @@ async function sendData(userData) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	const form = document.querySelector("form");
+	const createAccountButton = document.querySelector("button");
 
-	form.addEventListener("submit", (event) => {
+	createAccountButton.addEventListener("click", (event) => {
 		event.preventDefault();
 
 		const name = document.getElementById("name").value;

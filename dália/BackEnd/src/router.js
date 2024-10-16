@@ -16,6 +16,6 @@ router.post("/user", userMiddleware.validateBody, userController.createUserContr
 router.post("/user/login", userController.loginUserController);
 router.put("/user/:id", userController.updateUserController);
 router.delete("/user/:id", userController.deleteUserController);
-router.get("/user/id", userController.getUserIdByEmail);
+router.post("/user/id", userController.getUserIdByEmailController);
 
 module.exports = router;
