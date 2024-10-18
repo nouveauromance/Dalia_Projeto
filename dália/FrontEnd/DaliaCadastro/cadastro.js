@@ -8,15 +8,13 @@ async function sendData(userData) {
 			body: JSON.stringify(userData),
 		});
 
-		// Verifica se a requisição foi bem-sucedida
-		const responseData = await response.json(); // Adiciona parsing do JSON da resposta
-		console.log("Resposta do servidor:", responseData); // Log para ver detalhes da resposta
+		const responseData = await response.json();
+		console.log("Resposta do servidor:", responseData); 
 
 		if (response.status === 201) {
 			alert("Dados salvos com sucesso!");
 			window.location.href = "/dália/FrontEnd/DaliaLogin/login.html";
 		} else {
-			// Log para ver detalhes do erro
 			console.error("Erro ao salvar os dados:", responseData);
 			alert("Erro ao salvar os dados. Por favor, tente novamente.");
 		}

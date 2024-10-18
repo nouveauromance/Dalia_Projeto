@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Dália</title>
     <link rel="shortcut icon" type="imagex/png" href="/img/navbar/dália_secundario.png">
     <link rel="stylesheet" href="forum.css">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -16,11 +19,13 @@
         <nav>
             <ul>
                 <li class="Home"><a href="/home/index.html"><img src="/img/navbar/casa.jpg" alt=""></a></li>
-                <li class="Calendario"><a href="/calendario/calendario.html"><img src="/img/navbar/Calendario.png"></a></li>
+                <li class="Calendario"><a href="/calendario/calendario.html"><img src="/img/navbar/Calendario.png"></a>
+                </li>
                 <li class="Ajuda"><a href="/fórum/forum.html"><img src="/img/navbar/sac.png"></a></li>
                 <li class="Forum"><a href="/principal/principal.html"><img src="/img/navbar/Flor.png" alt=""></a></li>
                 <li class="dropdown">
-                    <a class="Perfil" href="#" id="perfilDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="Perfil" href="#" id="perfilDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         <img src="/img/navbar/profile.png">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="perfilDropdown">
@@ -47,6 +52,10 @@
         <section class="post-creation">
             <h2>Criar Post</h2>
             <form id="post-form">
+                <div class="post__perfil">
+                    <img src="/img/home/Medica.png" alt="Foto de perfil" class="foto__perfil">
+                    <p class="nome__perfil">Ana Beatriz</p>
+                </div>
                 <input type="text" id="post-title" placeholder="Título" required>
                 <textarea id="post-content" placeholder="Escreva seu post aqui..." required></textarea>
                 <button type="submit">Postar</button>
@@ -57,22 +66,29 @@
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
-          <div class="vw-plugin-top-wrapper"></div>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
-      </div>
-      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script>
+    </script>
     <footer>
         <div class="feedback">
             <p>Nós ouvimos! O que achou sobre isso?</p>
             <button>Enviar Feedback</button>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
     <script src="forum.js"></script>
 </body>
+
 </html>

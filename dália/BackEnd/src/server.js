@@ -10,5 +10,5 @@ app.listen({ port: 3333, host: "0.0.0.0" }, (err, address) => {
 		console.error("Erro ao iniciar o servidor:", err);
 		process.exit(1);
 	}
-	console.log(`Servidor HTTP rodando em ${address}`);
+	console.log(`Servidor HTTP rodando em ${PORT}`);
 });
