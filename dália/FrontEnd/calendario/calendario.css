@@ -1,7 +1,8 @@
-body {
+body{
     font-family: 'Arial', sans-serif;
     background-color: #FFF2EC;
     margin: 0;
+    padding: 0;
 }
 
 header {
@@ -24,154 +25,130 @@ nav ul li a {
     color: #333;
 }
 
-img{
+img {
     width: 40px;
 }
 
-.logo img{
+.logo img {
+    margin-top: 2%;
     width: 80px;
 }
 
-.Ajuda, .dropdown{
-    margin-top: 2%;
+.navbar{
+    padding: 0%;
 }
 
-.btn {
-    border: none;
-    background-color: #FFE6E2;
-}
-
-.dropdown:hover {
-    background-color: #FFE6E2;
-}
-
-.dropdown-toggle::after {
-    border-top: none;
-}
-
-.btn-secondary:not(:disabled):not(.disabled).active,
-.btn-secondary:not(:disabled):not(.disabled):active,
-.show>.btn-secondary.dropdown-toggle {
-    color: #FFE6E2;
-    background-color: #FFE6E2;
-    border-color: #FFE6E2;
-}
-
-
-.dropdown-menu {
-    margin: 46% 0% 0% -690%;
-    padding: 70% 200% 240% 250%;
-    display: none;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-image: url(/img/navbar/Gradient.png);
-}
-
-.dropdown-menu.show {
-    display: block;
-}
-
-.dropdown-menu form {
-    padding: 15px;
-}
-
-.dropdown-menu .form-group {
-    margin-bottom: 15px;
-}
-
-.dropdown-menu .form-control {
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.dropdown-menu .btn-primary {
-    border-radius: 5px;
-    padding: 10px 20px;
-}
-
-.profile img{
-    margin-left: 20%;
-    width: 50%;
-}
-
-.Ajuda, .dropdown{
-    margin-top: 2%;
-}
-
-.calendar-container {
-    width: 360px;
-    border-radius: 10px;
-    background-color: #fff;
-    padding: 20px;
+.calendar-section {
     text-align: center;
-    margin-left: 20%;
+    padding: 20px;
 }
 
-.month-year {
-    font-size: 24px;
+h2 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.card-calendar {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#calendar {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.fc-toolbar-title {
+    margin-right: 65px !important;
+    font-size: 22px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 50px;
-    margin-left: 95%;
 }
 
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 50px 10px; 
+.fc .fc-daygrid-day {
+    border: 1px solid #ddd;
+    background-color: #fff; 
 }
 
-.semana {
-    color: #FB88AB;
-    background-color: #FFC6C7;
-    border-radius: 20%;
-    box-shadow: 1px 3px rgba(0, 0, 0, 0.164);
-}
-
-.fimsemana {
-    color: #636363;
-    background-color: #CDD9B2;
-    border-radius: 20%;
-    box-shadow: 1px 3px rgba(0, 0, 0, 0.164);
-}
-
-th, td {
-    width: 14.28%;
-    text-align: center;
-    padding: 10px;
+.fc .fc-daygrid-day-number {
     font-size: 14px;
     color: #333;
-    border: 1px solid #ddd; 
-    background-color: #fff;
 }
 
-td {
-    cursor: pointer;
+.fc-event {
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#proxima-menstruacao {
+    font-size: 16px;
+    margin-top: 15px;
+    color: #333;
+    font-weight: 600;
+}
+
+.explicacao {
+    margin: 20px auto;
     padding: 15px;
-    border-radius: 50%;
+    width: 90%;
+    max-width: fit-content;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: left;
+    border: 1px solid #ddd; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-td.menstruation {
-    background-color: #f6d4d4;
-    border-radius: 50%;
+.callendar__explanation__title{
+    display: flex;
+    align-items: center;
 }
 
-td.fertile {
-    background-color: #fef4d4;
-    border-radius: 50%;
+.explicacao h3 {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-td.ovulation {
-    background-color: #d4f6d4;
-    border-radius: 50%;
+.explicacao p {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+    margin: 10px 0;
 }
 
-td.empty {
-    background-color: transparent;
-    cursor: default;
+.callendar__explanation{
+    gap: 8px;
+    display: flex;
+    align-items: center;
 }
 
+.menstruacao-sample, .fertil-sample, .ovulacao-sample {
+    display: inline-block;
+    width: 20px; 
+    height: 20px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
 
+.menstruacao-sample {
+    background-color: #FF4D4D;
+}
+
+.fertil-sample {
+    background-color: #4D90FE;
+}
+
+.ovulacao-sample {
+    background-color: #4CAF50;
+}
 

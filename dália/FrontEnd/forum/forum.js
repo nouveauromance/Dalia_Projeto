@@ -4,6 +4,7 @@ class Posts {
         this.titulo = titulo;
         this.conteudo = conteudo;
     }
+
     async createPost() {
         try {
             const response = await fetch('http://192.168.1.53:3333/post', {
@@ -35,6 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const postContent = document.getElementById('post-content');
     const postsContainer = document.getElementById('posts');
 
+    const userEmail = localStorage.getItem('userEmail');
+
+    const getUserIdFromEmail = async (email) => {
+        const response = await fetch(`http://192.168.1.53:3333/user/email?email=${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao obter o ID do usuário');
+        }
+        const data = await response.json();
+        return data.id;
+    };
+
     const loadPosts = async () => {
         try {
             const response = await fetch('http://192.168.1.53:3333/posts', {
@@ -45,12 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const posts = await response.json();
-
             postsContainer.innerHTML = '';
 
             posts.forEach((post) => {
                 const postElement = createPostElement(post.titulo, post.conteudo, post.likes, post.id);
-                postsContainer.appendChild(postElement);
+                postsContainer.prepend(postElement);
             });
 
             addHeartAnimation();
@@ -60,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const savePost = async (title, content) => {
-        const userID = 1;
+        const userID = await getUserIdFromEmail(userEmail);
         const post = new Posts(userID, title, content);
         await post.createPost();
         loadPosts();
@@ -71,10 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         postElement.classList.add('Post');
         postElement.setAttribute('data-id', postId);
         postElement.innerHTML = `
-            <div class="post__perfil">
-                <img src="/img/home/Medica.png" alt="Foto de perfil" class="foto__perfil">
-                <p class="nome__perfil">Ana Beatriz</p>
-            </div>
             <div class="Post__text">
                 <h3 class="post-title">${title}</h3>
                 <p class="text__content">${content}</p>
@@ -100,7 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div class="comments-section hidden">
-                <div class="comments-list"></div>
+                <div class="comments-list">
+                <div class="Post__text">
+                <h3 class="post-title">$Ola Mundo</h3>
+                <p class="text__content">$Ola Mundo</p>
+            </div>
+                </div>
             </div>
         `;
 
@@ -121,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const addComment = (event, postElement) => {
+    const addComment = async (event, postElement) => {
         event.preventDefault();
         const commentInput = postElement.querySelector('.comment-input');
         const commentText = commentInput.value.trim();
@@ -129,23 +146,45 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const commentsList = postElement.querySelector('.comments-list');
-        const newComment = document.createElement('div');
-        newComment.classList.add('comment');
-        newComment.innerHTML = `
-            <p><span class="comment-author">Você</span>: <span class="comment-text">${commentText}</span></p>
-        `;
-        commentsList.appendChild(newComment);
-        commentInput.value = '';
-    };
+        const postId = postElement.getAttribute('data-id');
 
+        try {
+            const userID = await getUserIdFromEmail(userEmail);
+
+            const response = await fetch('http://192.168.1.53:3333/comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    post_id: postId,
+                    usuario_id: userID,
+                    comentario: commentText
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao enviar o comentário');
+            }
+
+
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment');
+            newComment.innerHTML = `
+                <p><span class="comment-author">Você</span>: <span class="comment-text">${commentText}</span></p>
+            `;
+            const commentsList = postElement.querySelector('.comments-list');
+            commentsList.appendChild(newComment);
+            commentInput.value = '';
+        } catch (error) {
+            console.error('Erro ao adicionar comentário:', error);
+        }
+    };
 
     function addLike(postElement) {
         const postId = postElement.getAttribute('data-id');
         const likeCountElement = postElement.querySelector('.like__count');
         const heartIcon = postElement.querySelector('.heart');
-
-        console.log('Adicionando like ao post com ID:', postId);
 
         fetch('http://192.168.1.53:3333/like', {
             method: 'PUT',
@@ -161,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 let currentLikes = parseInt(likeCountElement.textContent);
                 likeCountElement.textContent = currentLikes + 1;
                 heartIcon.src = 'img/Heart - full.svg';
-                console.log('Like adicionado. Novos likes:', likeCountElement.textContent);
             })
             .catch(error => {
                 console.error('Erro ao curtir o post:', error);
@@ -172,8 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const postId = postElement.getAttribute('data-id');
         const likeCountElement = postElement.querySelector('.like__count');
         const heartIcon = postElement.querySelector('.heart');
-
-        console.log('Removendo like do post com ID:', postId);
 
         fetch('http://192.168.1.53:3333/RemoveLike', {
             method: 'PUT',
@@ -190,7 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentLikes > 0) {
                     likeCountElement.textContent = currentLikes - 1;
                     heartIcon.src = 'img/Heart - outlined.svg';
-                    console.log('Like removido. Novos likes:', likeCountElement.textContent);
                 }
             })
             .catch(error => {
@@ -205,8 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const postElement = heart.closest('.Post');
                 const isFilled = heart.getAttribute('data-filled') === 'true';
 
-                console.log('Coração clicado. Estado atual: ', isFilled ? 'preenchido' : 'não preenchido');
-
                 if (isFilled) {
                     RemoveLike(postElement);
                     heart.setAttribute('data-filled', 'false');
@@ -214,19 +247,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     addLike(postElement);
                     heart.setAttribute('data-filled', 'true');
-                    heart.src = 'img/Heart - full.svg';
                 }
 
-                heart.classList.add('animate');
-
-                setTimeout(() => {
-                    heart.classList.remove('animate');
-                }, 500);
+                heart.classList.add('heart-animation');
+                setTimeout(() => heart.classList.remove('heart-animation'), 500);
             });
         });
     }
-
-
 
     postForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -239,11 +266,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-
-    // if ( 0) {
-    //     loadPosts();
-    // } else {
-    //     postsContainer.innerHTML = '<p class="no-post">Nenhum Post encontrado</p>';
-    // }
+    loadPosts();
 });

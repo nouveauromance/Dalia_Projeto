@@ -3,46 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/LandingPage/landingpage.css">
+    <link rel="stylesheet" href="/FrontEnd/LandingPage/landingpage.css">
     <title>Dália</title>
     <link rel="shortcut icon" type="imagex/png" href="/img/navbar/dália_secundario.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
-    <div class="Landing_cadastro_entrar">
-        <img src="/img/home/CuidandoVoce.png" alt="Dália cuidando de Você" class="DaliaCuidando">
-        <a class="Cadastrar" href="/Dália cadastro/cadastro.html">Cadastrar</a>
-        <a class="Entrar" href="/Dália login/login.html">Entrar</a>
+    <div class="Header">
+        <img src="img/Arte moça dália.png" alt="" class="img__head">
+        <div class="head__acoes">
+        <p class="titulo__head">Dália</p>
+        <p class="subtitulo__head">Cuidando de Você</p>
+        <div class="btn__botoes">
+            <div class="btn__botoes">
+                <a href="/FrontEnd/DaliaCadastro/cadastro.html" class="Cadastrar">
+                    <button>Cadastrar</button>
+                </a>
+                <a href="/FrontEnd/DaliaLogin/login.html" class="Entrar">
+                    <button>Entrar</button>
+                </a>
+            </div>
+        </div>
+        </div>
     </div>
 
-    <div class="conhecerdalia">
-        <img src="/img/home/Dália-flor.png" alt="Flor Dália">
-        <h2>Conheça o Dália <img src="/img/home/Coração.png" alt="Coração"></h2>
-        <p>Um calendário diferente pensado com carinho para atender as suas necessidades</p>
+    <div class="conhecerdalia" data-aos="fade-right">
+        <img src="/FrontEnd/LandingPage/Img/flor-dália.png" alt="Flor Dália" class="flor">
+        <div class="conhecerdalia__txt" data-aos="fade-left">
+        <div class="txt__coracao">
+        <p>Conheça o Dália</p>
+        <img src="/FrontEnd/LandingPage/Img/Coração.png" alt="Coração">
+    </div>
+        <p>Um calendário menstrual especializado e desenvolvido com carinho para atender as suas necessidades.</p>
+    </div>
     </div>
 
-    <div class="oferecemos">
-        <h2>Te oferecemos</h2>
+    <div class="Funcionalidades" data-aos="zoom-in">
+        <p class="titulo__cards">Te oferecemos</p>
         <div class="items">
-            <div class="item">
-                <img src="/img/home/Escudo.png" alt="Escudo">
-                <p>Segurança</p>
+            <div class="item" data-aos="flip-left">
+                <img src="img/Escudo.png" alt="Escudo">
+                <p>Segurança para as mulheres em situações de risco com alertas de segurança e localização em tempo real.</p>
             </div>
-            <div class="item">
-                <img src="/img/home/Calendario_landing.png" alt="Calendario">
-                <p>Calendario</p>
+            <div class="item" data-aos="flip-left">
+                <img src="img/Calendário.png" alt="Calendario">
+                <p>Um calendário menstrual personalizado para ajudar a entender melhor o seu ciclo menstrual.</p>
             </div>
-            <div class="item">
-                <img src="/img/home/lampada.png" alt="Lampada">
-                <p>Informações</p>
+            <div class="item" data-aos="flip-left">
+                <img src="img/Lâmpada.png" alt="Lampada">
+                <p>Informações sobre saúde menstrual e bem-estar para ajudar a entender melhor o seu corpo.</p>
             </div>
         </div>
     </div>
 
-    <p class="pre_footer">Se sinta confortável nos seus períodos mais<br> difíceis e sempre que precisar estaremos aqui<br> para te socorrer.</p>
-
+    <div class="swiper-container pre_footer">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Bem-vinda ao Dália!</h3>
+                <p>Conheça uma plataforma dedicada ao cuidado da saúde feminina com recursos especializados.</p>
+            </div>
+            <div class="swiper-slide">
+                <h3>Calendário Personalizado</h3>
+                <p>Monitore seu ciclo menstrual com um calendário adaptado às suas necessidades específicas.</p>
+            </div>
+            <div class="swiper-slide">
+                <h3>Segurança em Tempo Real</h3>
+                <p>Acesse alertas e localização em tempo real para garantir a sua segurança em situações de risco.</p>
+            </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    
     <footer class="footer">
         <div class="logo">
-            <img src="/img/navbar/Logo_dalia.png" alt="Logo">
+            <img src="../home/img/navbar/Logo_dalia.png" alt="Logo">
         </div>
         <div class="column">
             <h3>Social</h3>
@@ -55,15 +94,18 @@
             <p>datalacalendar@gmail.com</p>
         </div>
     </footer>
+
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
           <div class="vw-plugin-top-wrapper"></div>
         </div>
-      </div>
-      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script>
+    </div>
+    
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/FrontEnd/LandingPage/landingpage.js"></script>
+        
 </body>
 </html>

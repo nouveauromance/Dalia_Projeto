@@ -22,7 +22,7 @@ const createUser = async (user) => {
 const deleteUser = async (id) => {
 	const removedUser = await connection.execute(
 		"DELETE FROM usuarios where id = ?",
-		[id],
+		[id]
 	);
 
 	return removedUser;
@@ -42,21 +42,26 @@ const updateUser = async (nome, sobrenome, email, senha, id) => {
 };
 
 const loginUser = async (email, senha) => {
-  const query = "SELECT id FROM usuarios WHERE email = ? AND senha = ?";
-  const [rows] = await connection.execute(query, [email, senha]);
-  
-  if (rows.length > 0) {
-    return rows[0].id; 
-  }
-  return null; 
+	const query = "SELECT id FROM usuarios WHERE email = ? AND senha = ?";
+	const [rows] = await connection.execute(query, [email, senha]);
+
+	if (rows.length > 0) {
+		return rows[0].id;
+	}
+	return null;
 };
 
 const findUserByEmail = async (email) => {
 	const query = "SELECT id FROM usuarios WHERE email = ?";
 	const [idEmail] = await connection.execute(query, [email]);
 	return idEmail[0];
-}
+};
 
+const findNameUserByEmail = async (email) => {
+	const query = "SELECT nome FROM usuarios WHERE email = ?";
+	const [idEmail] = await connection.execute(query, [email]);
+	return idEmail[0];
+};
 
 module.exports = {
 	getAll,
@@ -64,5 +69,6 @@ module.exports = {
 	deleteUser,
 	updateUser,
 	loginUser,
-	findUserByEmail
+	findUserByEmail,
+	findNameUserByEmail
 };

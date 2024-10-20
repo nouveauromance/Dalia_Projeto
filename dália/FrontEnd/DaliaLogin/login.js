@@ -16,7 +16,7 @@ async function sendLogin(email, senha) {
             alert("Login realizado com sucesso");
             localStorage.setItem("idUser", JSON.stringify(responseData.user));
             console.log("Email:", email);
-            window.location.href = "/dália/FrontEnd/DaliaPerguntas/perguntas.html";
+            window.location.href = "/FrontEnd/DaliaPerguntas/perguntas.html";
         } else {
             alert("Usuário não encontrado");
             window.location.reload();

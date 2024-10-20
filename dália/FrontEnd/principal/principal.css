@@ -11,7 +11,7 @@ body {
 
 header {
     width: 100%;
-    background: #FFE6E2;
+    background: #FFF2EC;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,6 +38,10 @@ img {
     width: 80px;
 }
 
+.navbar{
+    padding: 0%;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -55,8 +59,8 @@ h2 {
 
 main {
     display: flex;
+    justify-content: center;
     margin-top: 40px;
-    width: 80%;
 }
 
 .left-panel, .right-panel {
@@ -68,30 +72,38 @@ main {
     flex: 1;
 }
 
-.circle {
-    background: #f8d7da;
-    border-radius: 50%;
-    width: 210px;
-    height: 210px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    font-size: 24px;
-}
 
 .mood, .habits, .sintomas, .flow {
     margin-top: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffeeef;
+    padding: 20px 0;
+}
+.sintomas{
+    padding: 20px;
 }
 
-.mood-options input {
-    display: none;
+.flow{
+    padding: 20px;
 }
 
 .mood-options label {
     font-size: 24px;
     margin-right: 10px;
     cursor: pointer;
+    transition: transform 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.mood-options label:hover {
+    transform: scale(1.5); /* Aumenta o tamanho no hover */
+}
+
+.mood-options input:checked + label {
+    transform: scale(1.5); /* Aumenta o tamanho ao clicar */
 }
 
 .habits input, .sintomas input, .flow select {
@@ -109,19 +121,52 @@ main {
 }
 
 .sintoma {
-    display: inline-block;
-    margin-right: 10px;
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
     cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 20px;
-    background-color: #c2e0ff;
-    color: #000000;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  
+}
+
+.sintoma:hover{
+    background-color: #fff;
+}
+
+.sintoma:active{
+    box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+
+}
+
+.sintomas__btn{
+    display: flex;
+    gap: 10px;
+    
 }
 
 .btn {
     border: none;
     background-color: #FFE6E2;
 }
+
+dl, ol, ul {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
 
 .dropdown:hover {
     background-color: #FFE6E2;
@@ -131,13 +176,6 @@ main {
     border-top: none;
 }
 
-.btn-secondary:not(:disabled):not(.disabled).active,
-.btn-secondary:not(:disabled):not(.disabled):active,
-.show>.btn-secondary.dropdown-toggle {
-    color: #FFE6E2;
-    background-color: #FFE6E2;
-    border-color: #FFE6E2;
-}
 
 
 .dropdown-menu {
@@ -156,7 +194,7 @@ main {
 }
 
 .dropdown-menu form {
-    padding: 15px;
+    padding: 15px;  
 }
 
 .dropdown-menu .form-group {
@@ -198,3 +236,10 @@ main {
     border-radius: 30px;
     padding: 5% 30% 0%;
 }
+
+@media (min-width: 768px) {
+    .button-74 {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+  }

@@ -7,13 +7,11 @@ const getAllController = async (_req, res) => {
 
 const createUserController = async (req, res) => {
 	const createdUser = await userModel.createUser(req.body);
-
 	return res.status(201).json(createdUser);
 };
 
 const deleteUserController = async (req, res) => {
 	const { id } = req.params;
-
 	await userModel.deleteUser(id);
 	return res.status(204).json();
 };
@@ -34,11 +32,19 @@ const loginUserController = async (req, res) => {
 const getUserIdByEmailController = async (req, res) => {
 	const { email } = req.body;
 	const user = await userModel.findUserByEmail(email);
-	return res.status(200).json(user)
-
-	
+	return res.status(200).json(user);
 };
 
+const getNameUserIdByEmailController = async (req, res) => {
+	const { email } = req.body;
+	const user = await userModel.findNameUserByEmail(email);
+
+	if (!user || !user.nome) {
+		return res.status(404).json({ message: 'Usuário não encontrado' });
+	}
+
+	return res.status(200).json(user);
+};
 
 module.exports = {
 	getAllController,
@@ -46,5 +52,6 @@ module.exports = {
 	deleteUserController,
 	updateUserController,
 	loginUserController,
-	getUserIdByEmailController
+	getUserIdByEmailController,
+	getNameUserIdByEmailController
 };

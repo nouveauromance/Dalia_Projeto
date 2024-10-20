@@ -7,14 +7,12 @@ body {
 }
 
 header {
-    margin: 0;
     width: 100%;
     background: #FFF2EC;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #000000;
-    position: sticky;
 }
 
 nav ul {
@@ -28,7 +26,7 @@ nav ul li a {
     color: #333;
 }
 
-img{
+img {
     width: 40px;
 }
 

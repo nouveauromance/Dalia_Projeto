@@ -3,112 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Dália Home</title>
     <link rel="stylesheet" href="style.css">    
-    <title>Dália</title>
-    <link rel="shortcut icon" type="imagex/png" href="/img/navbar/dália_secundario.png">
+    <link rel="shortcut icon" type="imagex/png" href="../img/navbar/dália_secundario.png">
 </head>
 <body>
+
     <header>
         <div class="logo">
-            <img src="/img/navbar/Logo_dalia.png" alt="Logo">
+            <img src="./img/navbar/Logo_dalia.png" alt="Logo">
         </div>
         <nav>
             <ul>
-                <li class="Home"><a href="/home/index.html"><img src="/img/navbar/casa.jpg" alt=""></a></li>
-                <li class="Calendario"><a href="/calendario/calendario.html"><img src="/img/navbar/Calendario.png"></a></li>
-                <li class="Ajuda"><a href="/fórum/forum.html"><img src="/img/navbar/sac.png"></a></li>
-                <li class="Forum"><a href="/principal/principal.html"><img src="/img/navbar/Flor.png" alt=""></a></li>
-                <li class="dropdown">
-                    <a class="Perfil" href="#" id="perfilDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="/img/navbar/profile.png">
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="perfilDropdown">
-                        <form class="p-4">
-                            <div class="profile">
-                                <img src="/img/navbar/profile.png" alt="Perfil">
-                            </div>
-                            <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <p id="nome"></p>
-                            </div>
-                            <div class="form-group">
-                                <label for="sobrenome">Sobrenome</label>
-                                <p id="sobrenome"></p>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Ajuda</button>
-                        </form>
-                    </div>
+                <li class="Home"><a href="../home/index.html"><img src="./img/navbar/Home-full__nav.svg" alt=""></a></li>
+                <li class="Calendario"><a href="../calendario/calendario.html"><img src="./img/navbar/Calendar__nav.svg"></a></li>
+                <li class="forum"><a href="../forum/forum.html"><img src="./img/navbar/Fórum__nav.svg"></a></li>
+                <li class="principal"><a href="../principal/principal.html"><img src="./img/navbar/Flower__nav.svg" alt=""></a></li>
+                <li class="perfil"><a href="../perfil/perfil.html"><img src="./img/navbar/Perfil__nav.svg"></a>
                 </li>
             </ul>
         </nav>
     </header>
     <main>
-        <section class="left-panel">
-            <div class="oval">
-                <p></p>
-            </div>
-        </section>
-
-        <section class="middle-panel">
-            <div class="circle">
-                <p class="circulo1">Hoje</p>
-                <a class="circulo2" href="/principal/principal.html">O que você está sentindo hoje?</a>
-            </div>
-        </section>
-        
-        <section class="right-panel">
-            <div class="oval">
-                <p></p>
-            </div>
-        </section>
-
-        <h1>Sobre a sua saúde</h1>
-        
-        <div class="card-deck">
-            <div class="card"> <a href="https://encurtador.com.br/R30Qg" target="_blank">
-                <img class="card-img-top" src="/img/home/MulherComendo.png" alt="Imagem de capa do card">
-            <spam class="card-text">Alimentos que influenciam na saúde menstrual das mulheres</spam>
-            </a>
-            </div>
-            <div class="card"><a href="https://encurtador.com.br/JoziW" target="_blank">
-                <img class="card-img-top" src="/img/home/MulherDecepcionada.png" alt="Imagem de capa do card">
-                <spam class="card-text">Dicas para controle emocional e saúde mental</spam>
-            </a>
-            </div>
-            <div class="card"> <a href="https://encurtador.com.br/TQYTV" target="_blank">
-              <img class="card-img-top" src="/img/home/MulherCorrendo.png" alt="Imagem de capa do card">
-                <spam class="card-text">Hábitos que auxiliam mulheres durante seu período menstrual</spam>
-            </a>
-            </div>
-            <div class="card"> <a href="https://guiadoslivros.com.br/melhores-livros-de-educacao-sexual/" target="_blank">
-                <img class="card-img-top" src="/img/home/MulherLendo.png" alt="Imagem de capa do card">
-                <spam class="card-text">Livros que vão te auxiliar na sua educação sexual</spam>
-            </a>
+        <div class="banner">
+            <div class="oval-container">
+                <div class="oval small"></div>
+                <div class="oval medium"></div>
+                <div class="oval large">
+                    <div class="HOJE">
+                        <div class="text-container">
+                            <h1 class="home-title">HOJE</h1>
+                            <p class="subtitle">Como você está hoje?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="oval medium"></div>
+                <div class="oval small"></div>
             </div>
         </div>
-        <div class="leis">
-            <a href="https://encurtador.com.br/LcXFL" target="_blank"><h2><b>Você sabe sobre as leis?</b></h2>
-            <h3>saiba como se defender.</h3></a>
-            <img class="MulheresConversando" src="/img/home/MulheresConversando.png" alt="Mulheres Conversando">
-        </div>
-        <div class="tipo_lei">
-            <div class="item"> <a href="https://encurtador.com.br/VAlb6" target="_blank">
-                <img src="/img/home/Telefone.png" alt="Direitos trabalhistas das mulheres">
-                <p>Direitos trabalhistas das mulheres</p>
-            </a>
+        <div class="title">Sobre a sua saúde:</div>
+        <div class="cards-container">
+            <div class="card" style="background-color: #CDD9B2;">
+                <img src="/FrontEnd/home/img/mocacomendo.png" alt="Alimentação">
+                <p>Alimentos que influenciam na saúde sexual das mulheres</p>
             </div>
-            <div class="item"><a href="https://encurtador.com.br/VAlb6" target="_blank">
-                <img src="/img/home/Advogada.png" alt="Leis sobre abuso sexual">
-                <p>Leis sobre abuso sexual</p>
-            </a>
+            <div class="card" style="background-color: #F6C780;">
+                <img src="/FrontEnd/home/img/mocachorando.png" alt="Saúde Mental">
+                <p>Dicas para controle emocional e saúde mental</p>
             </div>
-            <div class="item"><a href="https://encurtador.com.br/VAlb6" target="_blank">
-                <img src="/img/home/Medica.png" alt="Leis de acesso a saúde">
-                <p>Leis de acesso a saúde</p>
-            </a>
+            <div class="card" style="background-color: #FFC6C7;">
+                <img src="/FrontEnd/home/img/mocacaminhando.png" alt="Hábitos Saudáveis">
+                <p>Hábitos que auxiliam mulheres durante seu perído menstrual</p>
+            </div>
+            <div class="card" style="background-color: #FFB68B;">
+                <img src="/FrontEnd/home/img/mocalendo.png" alt="Educação Sexual">
+                <p>Livros que vão te auxiliar na sua educação sexual</p>
             </div>
         </div>
+        <div class="cards-container">
+            <div class="card ban2">
+                <div class="card ban3">
+                    <div class="text">
+                        <h1>Você sabe sobre<br>as leis?</h1>
+                        <p>Saiba como se defender!</p>
+                    </div>
+                    <img class="imgsem" id="card-img" src="/FrontEnd/home/img/conversa.png" alt="Conversa">
+                </div>                
+            </div>
+        </div>
+        <div class="oval-container">
+            <div class="oval fotinhas">
+                <img src="/FrontEnd/home/img/telefoneealerta.png" alt="Alerta">
+            </div>
+            <div class="oval fotinhas">
+                <img src="/FrontEnd/home/img/mocatrabalhando.png" alt="Trabalho">
+            </div>
+            <div class="oval fotinhas">
+                <img src="/FrontEnd/home/img/mocaenfermeira.png" alt="Enfermeira">
+            </div>
+        </div>
+        <div class="text-container1">
+            <div class="text-custom">
+                <h2>Direitos trabalhistas<br>das mulheres</h2>
+            </div>
+            <div class="text-custom">
+                <h2>Leis sobre abuso<br>sexual</h2>
+            </div>
+            <div class="text-custom">
+                <h2>Leis de acesso<br>a saúde</h2>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-content">
+                <img src="../img/navbar/Logo_dalia.png" alt="logo dália" class="footer-logo">
+                <div class="language-selector">
+                    <img src="/FrontEnd/home/img/bandeira.png" alt="bandeira brasil">
+                    <span>Português do Brasil</span>
+                </div>
+                <div class="social-media"> 
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                     <a href="#" aria-label="Youtube">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                </div>
+                <div class="footer-sections">
+                    <div class="section">
+                        <h4>Empresas</h4>
+                        <a href="#">Sobre</a><br>
+                        <a href="#">Marca</a>
+                    </div>
+                    <div class="section">
+                        <h4>Recursos</h4>
+                        <a href="#">Suporte</a><br>
+                        <a href="#">Segurança</a><br>
+                        <a href="#">Blog</a><br>
+                        <a href="#">Comunidade</a>
+                    </div>
+                    <div class="section">
+                        <h4>Políticas</h4>
+                        <a href="#">Termos</a><br>
+                        <a href="#">Privacidade</a><br>
+                        <a href="#">Cookies</a><br>
+                        <a href="#">Moderação</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
     <div vw class="enabled">
         <div vw-access-button class="active"></div>

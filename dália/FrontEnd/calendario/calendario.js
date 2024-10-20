@@ -1,76 +1,74 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+
     const armazenadoDataUltimaMenstruacao = localStorage.getItem('lastPeriodDate');
     const armazenadoDuracaoCiclo = localStorage.getItem('cycleLength');
+    const dataUltimaMenstruacao = armazenadoDataUltimaMenstruacao ? new Date(armazenadoDataUltimaMenstruacao) : new Date();
+    const duracaoCiclo = armazenadoDuracaoCiclo ? parseInt(armazenadoDuracaoCiclo) : 28;
 
-    if (armazenadoDataUltimaMenstruacao && armazenadoDuracaoCiclo) {
-        const dataUltimaMenstruacao = new Date(armazenadoDataUltimaMenstruacao);
-        const duracaoCiclo = parseInt(armazenadoDuracaoCiclo);
+    function calcularPeriodos(dataUltimaMenstruacao, duracaoCiclo) {
+        const eventos = [];
+        let cicloAtual = new Date(dataUltimaMenstruacao);
 
-        if (!isNaN(dataUltimaMenstruacao.getTime()) && !isNaN(duracaoCiclo)) {
-            renderizarCalendario(dataUltimaMenstruacao, duracaoCiclo);
-        } else {
-            alert('Dados inválidos. Por favor, insira os dados novamente.');
-            window.location.href = '/formulario/formulario.html';
+        for (let i = 0; i < 12; i++) {
+            const dataProximaMenstruacao = new Date(cicloAtual);
+
+            const fimMenstruacao = new Date(dataProximaMenstruacao);
+            fimMenstruacao.setDate(fimMenstruacao.getDate() + 4); 
+
+            eventos.push({
+                title: 'Menstruação',
+                start: dataProximaMenstruacao.toISOString().split('T')[0],
+                end: fimMenstruacao.toISOString().split('T')[0],
+                color: '#e57373', 
+                rendering: 'background',
+                allDay: true
+            });
+
+            const ovulacao = new Date(dataProximaMenstruacao);
+            ovulacao.setDate(ovulacao.getDate() + Math.floor(duracaoCiclo / 2));
+            const inicioFertil = new Date(ovulacao);
+            inicioFertil.setDate(inicioFertil.getDate() - 5);
+            const fimFertil = new Date(ovulacao);
+            fimFertil.setDate(fimFertil.getDate() + 4);
+
+            eventos.push({
+                title: 'Ovulação',
+                start: ovulacao.toISOString().split('T')[0],
+                color: '#83ce8f', 
+                allDay: true
+            });
+
+            eventos.push({
+                title: 'Fase Fértil',
+                start: inicioFertil.toISOString().split('T')[0],
+                end: fimFertil.toISOString().split('T')[0],
+                color: '#74c7eb', 
+                allDay: true
+            });
+
+            cicloAtual.setDate(cicloAtual.getDate() + duracaoCiclo);
         }
-    } else {
-        alert('Por favor, insira a data da última menstruação e a duração do ciclo.');
-        window.location.href = '/formulario/formulario.html';
+
+        return eventos;
     }
+
+    const eventosCiclo = calcularPeriodos(dataUltimaMenstruacao, duracaoCiclo);
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'pt-br',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth'
+        },
+        events: eventosCiclo,
+        eventDidMount: function(info) {
+            
+            info.el.style.fontWeight = 'bold';
+        }
+    });
+    calendar.render();
 });
-
-function renderizarCalendario(dataUltimaMenstruacao, duracaoCiclo) {
-    const tamanhoMenstruacao = 5;
-    const diaOvulacao = Math.floor(duracaoCiclo / 2);
-    const comecoFertil = diaOvulacao - 5;
-    const fimFertil = diaOvulacao + 4;
-
-    const corpoCalendario = document.getElementById('calendar-body');
-    corpoCalendario.innerHTML = '';
-
-
-    const dataProximoPeriodo = new Date(dataUltimaMenstruacao);
-    dataProximoPeriodo.setDate(dataUltimaMenstruacao.getDate() + duracaoCiclo);
-
-
-    const mesAno = document.getElementById('month-year');
-    mesAno.textContent = `${dataProximoPeriodo.toLocaleString('pt-BR', { month: 'long' })} ${dataProximoPeriodo.getFullYear()}`;
-
-
-    const diasMes = new Date(dataProximoPeriodo.getFullYear(), dataProximoPeriodo.getMonth() + 1, 0).getDate();
-    const primeiroIndiceDia = new Date(dataProximoPeriodo.getFullYear(), dataProximoPeriodo.getMonth(), 1).getDay();
-
-    let dia = 1;
-    for (let i = 0; i < 6; i++) {
-        const linha = document.createElement('tr');
-
-        for (let j = 0; j < 7; j++) {
-            const celula = document.createElement('td');
-
-            if (i === 0 && j < primeiroIndiceDia) {
-                celula.classList.add('empty');
-                linha.appendChild(celula);
-            } else if (dia > diasMes) {
-                celula.classList.add('empty');
-                linha.appendChild(celula);
-            } else {
-                celula.textContent = dia;
-
-                const dataAtual = new Date(dataProximoPeriodo.getFullYear(), dataProximoPeriodo.getMonth(), dia);
-                const diaCiclo = ((dataAtual - dataUltimaMenstruacao) / (1000 * 60 * 60 * 24)) % duracaoCiclo;
-
-                if (diaCiclo >= 0 && diaCiclo < tamanhoMenstruacao) {
-                    celula.classList.add('menstruation');
-                } else if (diaCiclo === diaOvulacao) {
-                    celula.classList.add('ovulation');
-                } else if (diaCiclo >= comecoFertil && diaCiclo <= fimFertil) {
-                    celula.classList.add('fertile');
-                }
-
-                linha.appendChild(celula);
-                dia++;
-            }
-        }
-
-        corpoCalendario.appendChild(linha);
-    }
-}
+    
