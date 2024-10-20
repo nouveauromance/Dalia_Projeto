@@ -48,7 +48,11 @@ CREATE TABLE posts (
     usuario_id INT,
     titulo VARCHAR(255) NOT NULL,
     conteudo TEXT NOT NULL,
+<<<<<<< HEAD:dália/BackEnd/Dalia.db
     likes INT DEFAULT 0, -- Quantidade de likes, iniciando em 0
+=======
+    likes INT DEFAULT 0, 
+>>>>>>> fcb7f8c742156e0491883f7705114b80bc058269:dália/BackEnd/Dalia.sql
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
@@ -61,4 +65,8 @@ CREATE TABLE comentarios (
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+<<<<<<< HEAD:dália/BackEnd/Dalia.db
 );
+=======
+);
+>>>>>>> fcb7f8c742156e0491883f7705114b80bc058269:dália/BackEnd/Dalia.sql

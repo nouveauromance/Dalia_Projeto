@@ -18,8 +18,7 @@ router.post("/user", userMiddleware.validateBody, userController.createUserContr
 router.post("/user/login", userController.loginUserController);
 router.put("/user/:id", userController.updateUserController);
 router.delete("/user/:id", userController.deleteUserController);
-router.post("/user/id", userController.getUserIdByEmailController);
-router.post('/user/email', userController.getNameUserIdByEmailController);
+router.get("/user/:email", userController.getUserIdByEmailController);
 
 // Rotas para Posts
 router.get("/posts", postsController.getAllController);
@@ -28,7 +27,7 @@ router.put("/like", postsController.likesIncrementController);
 router.put("/removeLike", postsController.removeLikeController);
 
 // Rotas para comentarios
-router.get("/comment", commentController.getCommentsByPostId);
 router.post("/comment", commentController.createComment);
+router.get("/comment/:post_id", commentController.getCommentsByPostId);
 
 module.exports = router;

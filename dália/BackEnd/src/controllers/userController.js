@@ -30,9 +30,10 @@ const loginUserController = async (req, res) => {
 };
 
 const getUserIdByEmailController = async (req, res) => {
-	const { email } = req.body;
+	const { email } = req.params;
 	const user = await userModel.findUserByEmail(email);
-	return res.status(200).json(user);
+	return res.status(201).json(JSON.stringify(user));
+	
 };
 
 const getNameUserIdByEmailController = async (req, res) => {
