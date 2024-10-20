@@ -1,6 +1,6 @@
 async function sendLogin(email, senha) {
     try {
-        const response = await fetch("http://192.168.1.53:3333/user/login", {
+        const response = await fetch("http://localhost:3333/user/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -15,6 +15,7 @@ async function sendLogin(email, senha) {
         if (responseData.user != null) {
             alert("Login realizado com sucesso");
             localStorage.setItem("idUser", JSON.stringify(responseData.user));
+            localStorage.setItem("userEmail", JSON.stringify(email));
             console.log("Email:", email);
             window.location.href = "/dália/FrontEnd/DaliaPerguntas/perguntas.html";
         } else {

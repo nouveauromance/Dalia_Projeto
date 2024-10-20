@@ -1,6 +1,6 @@
 async function sendData(userData) {
 	try {
-		const response = await fetch("http://192.168.1.53:3333/user", {
+		const response = await fetch("http://localhost:3333/user", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
