@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário Menstrual - Dália</title>
-    <link rel="shortcut icon" type="imagex/png" href="./img/navbar/dália_secundario.png">
+    <link rel="shortcut icon" type="image/png" href="./img/navbar/dália_secundario.png">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
-
     <link rel="stylesheet" href="calendario.css">
 </head>
 <body>
@@ -20,8 +19,7 @@
                 <li class="Calendario"><a href="../calendario/calendario.html"><img src="./img/navbar/Calendar-full__nav.svg"></a></li>
                 <li class="forum"><a href="../forum/forum.html"><img src="./img/navbar/Fórum__nav.svg"></a></li>
                 <li class="principal"><a href="../principal/principal.html"><img src="./img/navbar/Flower__nav.svg" alt=""></a></li>
-                <li class="perfil"><a href="../perfil/perfil.html"><img src="./img/navbar/Perfil__nav.svg"></a>
-                </li>
+                <li class="perfil"><a href="../perfil/perfil.html"><img src="./img/navbar/Perfil__nav.svg"></a></li>
             </ul>
         </nav>
     </header>
@@ -32,24 +30,31 @@
             <div id="calendar"></div> 
         </div>
         <p id="proxima-menstruacao"></p>
+        <button id="registrar-menstruacao">Registrar Menstruação</button>
+        <button id="fim-menstruacao" style="display: none;">Fim da Menstruação</button>
     </div>
     
     <div class="explicacao">
         <h3>Entendendo seu Ciclo</h3>
         <div class="callendar__explanation">
-            <div class="callendar__explanation__title"> <div class="menstruacao-sample"></div><strong>Menstruação:</strong></div>
-            <p class="menstruacao"> Os dias em vermelho indicam seu período menstrual.</p>
+            <div class="callendar__explanation__title">
+                <div class="menstruacao-sample"></div><strong>Menstruação:</strong>
+            </div>
+            <p class="menstruacao">Os dias em vermelho indicam seu período menstrual.</p>
         </div>
         <div class="callendar__explanation">
-            <div class="callendar__explanation__title"><div class="fertil-sample"></div><strong>Dias Férteis:</strong></div>
-            <p class="fertil"> os dias em azul indicam seu período fértil, quando há maior chance de engravidar.</p>
+            <div class="callendar__explanation__title">
+                <div class="fertil-sample"></div><strong>Dias Férteis:</strong>
+            </div>
+            <p class="fertil">Os dias em azul indicam seu período fértil, quando há maior chance de engravidar.</p>
         </div>
         <div class="callendar__explanation">
-            <div class="callendar__explanation__title"> <div class="ovulacao-sample"></div><strong>Ovulação:</div></strong> 
-           <p class="ovulacao"> O dia em verde indica sua ovulação, o dia mais fértil do ciclo.</p>
+            <div class="callendar__explanation__title">
+                <div class="ovulacao-sample"></div><strong>Ovulação:</strong>
+            </div>
+            <p class="ovulacao">O dia em verde indica sua ovulação, o dia mais fértil do ciclo.</p>
         </div>
     </div>
-    
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales/pt-br.js'></script>
