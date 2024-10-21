@@ -195,6 +195,7 @@ main {
     position: absolute;
     right: 10px;
     cursor: pointer;
+    margin-right: 10px  ;
 }
 
 .comment__interact{
@@ -266,7 +267,7 @@ main {
 .comments-section {
     max-height: 100;
     opacity: 100;
-    /* overflow: hidden; */
+   
     transition: max-height 0.8s ease, opacity 0.8s ease;
     margin-top: 25px;
 }
@@ -325,6 +326,104 @@ main {
     font-size: 14px;
     color: #333;
 }
+
+.comments-section {
+    max-height: 1000px;
+    opacity: 1;
+    transition: max-height 0.8s ease, opacity 0.8s ease;
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.comments-list {
+    margin-bottom: 20px;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;  
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.comment:hover {
+    transform: scale(1.02);
+}
+
+.comment__perfil {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.foto__perfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ff69b4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.comment__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nome__perfil {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.comment__text {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+    border-left: 4px solid #ff69b4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.input--send {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ffcccc;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 10px;
+    transition: border 0.3s ease; 
+    margin-top: 15px;
+}
+
+.input--send:focus {
+    border-color: #ff69b4;
+    box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+}
+
+.comment__interact {
+    cursor: pointer;
+    margin: 0;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+
 
 @keyframes pulse {
     0% {

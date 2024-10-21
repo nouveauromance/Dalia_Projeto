@@ -8,6 +8,7 @@ const userMiddleware = require("./middlewares/userMiddleware");
 
 // Rotas para questions
 router.get("/questions", questionsController.getAllQuestionsController);
+router.get("/menstruation/:id", questionsController.getMenstruationDayPeriod);
 router.post("/questions", questionsController.createQuestionController);
 router.put("/questions/:id", questionsController.updateQuestionController);
 router.delete("/questions/:id", questionsController.deleteQuestionController);
@@ -16,9 +17,11 @@ router.delete("/questions/:id", questionsController.deleteQuestionController);
 router.get("/user", userController.getAllController);
 router.post("/user", userMiddleware.validateBody, userController.createUserController);
 router.post("/user/login", userController.loginUserController);
-router.put("/user/:id", userController.updateUserController);
+// router.put("/user/:id", userController.updateUserController);
+router.put("/user/:id", userController.updateNameUserController);
+router.put('/birthday/:id', userController.updateUserBirthdayController);
 router.delete("/user/:id", userController.deleteUserController);
-router.get("/user/:email", userController.getUserIdByEmailController);
+router.get("/user/email/:id", userController.getNameUserIdByEmailController);
 
 // Rotas para Posts
 router.get("/posts", postsController.getAllController);

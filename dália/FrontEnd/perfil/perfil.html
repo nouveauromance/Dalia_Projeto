@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="perfil.css">
     <title>Dália</title>
-    <link rel="shortcut icon" type="image/png" href="/img/navbar/dália_secundario.png">
+    <link rel="shortcut icon" type="imagex/png" href="./img/navbar/dália_secundario.png">
 </head>
 <body>
     <header>
@@ -28,15 +28,8 @@
     </header>
 
     <main>
-        <div class="figura-horizontal">
-            <img src="./img/perfil_img/quadriculado-rosa.png" alt="Imagem de fundo">
-        </div>
         <div class="Area">
             <h1 class="titulo">Área do usuário</h1>
-            <div class="configurações">
-                <button class="conf" id="google_translate_element"></button>
-                <button class="conf" id="denuncia-button">Fazer Denúncia</button>
-            </div>
             <div class="perfil">
                 <div class="user-img">
                     <img src="./img/perfil_img/perfil.png" id="foto" class="perfil__foto">
@@ -45,24 +38,62 @@
                 </div>
                 
                 <label class="label" for="name">Nome:</label>
-                <input class="type" id="name" placeholder="Seu nome aqui" readonly>
-                <button id="edit-name-button">Editar Nome</button>
+                <input class="type" id="name" placeholder="Seu nome aqui">
                 
                 <label class="label" for="date">Data de nascimento</label>
                 <input class="info" type="date" id="date"></input>
-                <label class="label" for="select">Estado civil</label>
-                <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>Escolha uma das opções</option>
-                    <option value="1">Solteira</option>
-                    <option value="2">Casada</option>
-                    <option value="3">Divorciada</option>
-                </select>
+                
                 <div class="buttons">
                     <button class="editar" id="salvar">Salvar</button>
                 </div>
             </div>
         </div>
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <img src="./img/navbar/Logo_dalia.png" alt="logo dália" class="footer-logo">
+            <div class="language-selector">
+                <img src="./img/home_img/bandeira.png" alt="bandeira brasil">
+                <span>Português do Brasil</span>
+            </div>
+            <div class="social-media"> 
+                <a href="#" aria-label="Instagram">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                 <a href="#" aria-label="Youtube">
+                    <i class="fa fa-youtube"></i>
+                </a>
+            </div>
+            <div class="footer-sections">
+                <div class="section">
+                    <h4>Empresas</h4>
+                    <a href="#">Sobre</a><br>
+                    <a href="#">Marca</a>
+                </div>
+                <div class="section">
+                    <h4>Recursos</h4>
+                    <a href="#">Suporte</a><br>
+                    <a href="#">Segurança</a><br>
+                    <a href="#">Blog</a><br>
+                    <a href="#">Comunidade</a>
+                </div>
+                <div class="section">
+                    <h4>Políticas</h4>
+                    <a href="#">Termos</a><br>
+                    <a href="#">Privacidade</a><br>
+                    <a href="#">Cookies</a><br>
+                    <a href="#">Moderação</a>
+                </div>
+            </div>
+                <p>O seguinte botão serve para aquelas usuárias que precisam contatar urgentemente e de forma discreta a delegacia da mulher. Clique aqui apenas se for estritamente necessária</p>
+                <div class="configurações">
+                   <button class="conf" id="denuncia-button">Fazer Denúncia</button>
+                </div>
+        </div>
+    </footer>
 
     <div id="popup" class="popup" style="display:none;">
         <div class="popup-content">
@@ -80,70 +111,5 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-    <script>
-        async function fetchUserName() {
-            const email = localStorage.getItem('userEmail');
-            if (!email) return;
-
-            try {
-                const response = await fetch(`http://192.168.1.53:3333/user/email?email=${email}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                const data = await response.json();
-                if (data.nome) {
-                    document.getElementById('name').value = data.nome;
-                } else {
-                    console.error('Nome não encontrado.');
-                }
-            } catch (error) {
-                console.error('Erro ao buscar o nome do usuário:', error);
-            }
-        }
-
-        document.getElementById('edit-name-button').addEventListener('click', function () {
-            const nameInput = document.getElementById('name');
-            if (nameInput.readOnly) {
-                nameInput.readOnly = false;
-                nameInput.focus(); 
-            } else {
-                const newName = nameInput.value.trim();
-                if (newName) {
-                    updateUserName(newName);
-                }
-                nameInput.readOnly = true; 
-            }
-        });
-
-        async function updateUserName(newName) {
-            const email = localStorage.getItem('userEmail');
-            if (!email) return;
-
-            try {
-                const response = await fetch('http://192.168.1.53:3333/user/update', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, nome: newName }),
-                });
-
-                if (!response.ok) {
-                    throw new Error('Erro ao atualizar o nome do usuário');
-                }
-
-                const data = await response.json();
-                console.log('Nome atualizado com sucesso:', data);
-            } catch (error) {
-                console.error('Erro ao atualizar o nome do usuário:', error);
-            }
-        }
-
-        window.onload = fetchUserName;
-    </script>
 </body>
 </html>

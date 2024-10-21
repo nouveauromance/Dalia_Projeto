@@ -22,9 +22,16 @@ const updateQuestionController = async (req, res) => {
     return res.status(204).json();
 };
 
+const getMenstruationDayPeriod = async (req, res) => {
+    const { id } = req.params;
+    const menstruation = await questionsModel.menstruationDayPeriod( id );
+    return res.status(200).json(menstruation);
+};
+
 module.exports = {
     getAllQuestionsController,
     createQuestionController,
     deleteQuestionController,
-    updateQuestionController
+    updateQuestionController,
+    getMenstruationDayPeriod
 };

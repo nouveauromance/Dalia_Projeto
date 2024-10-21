@@ -1,91 +1,102 @@
-// Função para inicializar o Google Translate
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    { pageLanguage: 'en', includedLanguages: 'en,pt,es,fr,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
-    'google_translate_element'
-  );
-}
+const nameInput = document.getElementById('name');
+const birthdayInput = document.getElementById('date');
+const idUser = localStorage.getItem('idUser');
 
-// Função para obter o nome do usuário
-async function fetchUserName() {
-  const email = localStorage.getItem('userEmail');
-  if (!email) return;
+async function fetchUserDetails(id) {
+    try {
+        const response = await fetch(`http://localhost:3333/user/email/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-  try {
-    const response = await fetch(`http://192.168.1.53:3333/user/email?email=${email}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+        if (!response.ok) {
+            throw new Error(`Erro na resposta: ${response.status}`);
+        }
 
-    const data = await response.json();
-    if (data.nome) {
-      document.getElementById('name').value = data.nome;
-    } else {
-      console.error('Nome não encontrado.');
+        const data = await response.json();
+        nameInput.value = data.nome || "Nome Indefinido";
+        birthdayInput.value = data.data_nasc || "";
+    } catch (error) {
+        console.error('Erro ao buscar os dados do usuário:', error);
     }
-  } catch (error) {
-    console.error('Erro ao buscar o nome do usuário:', error);
-  }
 }
 
-// Função para habilitar a edição do nome do usuário
-document.getElementById('edit-name-button').addEventListener('click', function () {
-  const nameInput = document.getElementById('name');
-  if (nameInput.disabled) {
-    nameInput.disabled = false; // Habilita o input para edição
-    nameInput.focus(); // Foca no input
-  } else {
-    // Aqui você pode implementar a lógica para salvar o novo nome, se necessário
+async function updateUserBirthday(id, birthday) {
+    try {
+        const response = await fetch(`http://localhost:3333/birthday/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data_nasc: birthday }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro ao atualizar a data de nascimento: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Data de nascimento atualizada com sucesso:', data);
+        alert('Data de nascimento atualizada com sucesso!');
+    } catch (error) {
+        console.error('Erro ao atualizar a data de nascimento do usuário:', error);
+    }
+}
+
+async function updateUserName(id, name) {
+    try {
+        const response = await fetch(`http://localhost:3333/user/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nome: name }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro ao atualizar o nome: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Nome atualizado com sucesso:', data);
+        alert('Nome atualizado com sucesso!');
+    } catch (error) {
+        console.error('Erro ao atualizar o nome do usuário:', error);
+    }
+}
+
+document.getElementById('salvar').addEventListener('click', function () {
+    const newBirthday = birthdayInput.value.trim();
     const newName = nameInput.value.trim();
+    const id = localStorage.getItem('idUser');
+
+    if (newBirthday) {
+        updateUserBirthday(id, newBirthday);
+    } else {
+        console.warn('A data de nascimento não pode ser vazia.');
+    }
+
     if (newName) {
-      // Lógica para atualizar o nome no banco de dados, se necessário
-      updateUserName(newName);
+        updateUserName(id, newName);
+    } else {
+        console.warn('O nome não pode ser vazio.');
     }
-    nameInput.disabled = true; // Desabilita o input novamente
-  }
 });
 
-// Função para atualizar o nome do usuário no banco de dados
-async function updateUserName(newName) {
-  const email = localStorage.getItem('userEmail');
-  if (!email) return;
-
-  try {
-    const response = await fetch('http://192.168.1.53:3333/user/update', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, nome: newName }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Erro ao atualizar o nome do usuário');
-    }
-
-    const data = await response.json();
-    console.log('Nome atualizado com sucesso:', data);
-  } catch (error) {
-    console.error('Erro ao atualizar o nome do usuário:', error);
-  }
-}
-
-// Eventos para o popup
 document.getElementById('denuncia-button').addEventListener('click', function () {
-  document.getElementById('popup').style.display = 'flex';
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+
+    const closeBtn = document.querySelector('.close');
+    closeBtn.onclick = function () {
+        popup.style.display = 'none';
+    }
 });
 
-document.querySelector('.close').addEventListener('click', function () {
-  document.getElementById('popup').style.display = 'none';
+document.addEventListener('DOMContentLoaded', () => {
+    if (idUser) {
+        fetchUserDetails(idUser);
+    }
 });
-
-window.onclick = function (event) {
-  if (event.target == document.getElementById('popup')) {
-    document.getElementById('popup').style.display = 'none';
-  }
-};
-
-// Carregar o nome do usuário ao carregar a página
-window.onload = fetchUserName;

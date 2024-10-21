@@ -57,11 +57,30 @@ const findUserByEmail = async (email) => {
 	return idEmail[0];
 };
 
-const findNameUserByEmail = async (email) => {
-	const query = "SELECT nome FROM usuarios WHERE email = ?";
-	const [idEmail] = await connection.execute(query, [email]);
-	return idEmail[0];
+const findNameUserByEmail = async (id) => {
+	const query = "SELECT nome FROM usuarios WHERE id = ?";
+	const [ids] = await connection.execute(query, [id]);
+	return ids[0];
 };
+
+async function updateNameUser(id, nome) {
+	const query = 'UPDATE usuarios SET nome = ? WHERE id = ?';
+	const [result] = await connection.execute(query, [nome, id]);
+	return result;
+};
+
+
+async function updateBirthday(id, data_nasc) {
+    const query = 'UPDATE usuarios SET data_nasc = ? WHERE id = ?';
+    const [result] = await connection.execute(query, [data_nasc, id]);
+
+    if (result.affectedRows === 0) {
+        return null; 
+    }
+
+    return { id, data_nasc };
+}
+  
 
 module.exports = {
 	getAll,
@@ -70,5 +89,7 @@ module.exports = {
 	updateUser,
 	loginUser,
 	findUserByEmail,
-	findNameUserByEmail
+	findNameUserByEmail,
+	updateNameUser,
+	updateBirthday
 };

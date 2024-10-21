@@ -1,4 +1,5 @@
 
+DROP DATABASE Dalia;
 CREATE DATABASE Dalia;
 
 use Dalia;
@@ -8,7 +9,8 @@ CREATE TABLE usuarios (
     nome VARCHAR(100) NOT NULL,
     sobrenome VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL
+    senha VARCHAR(255) NOT NULL,
+    data_nasc DATE NULL
 );
 
 CREATE TABLE pesquisas (
@@ -20,17 +22,6 @@ CREATE TABLE pesquisas (
     tipo_contraceptivo VARCHAR(50),
     ultimo_dia_menstruacao DATE,
     duracao_ciclo INT,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
-);
-
-
-CREATE TABLE calendario_menstrual (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    data DATE NOT NULL,
-    humor VARCHAR(50),
-    sintomas TEXT,
-    fluxo VARCHAR(50),
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
@@ -48,11 +39,7 @@ CREATE TABLE posts (
     usuario_id INT,
     titulo VARCHAR(255) NOT NULL,
     conteudo TEXT NOT NULL,
-<<<<<<< HEAD:dália/BackEnd/Dalia.db
-    likes INT DEFAULT 0, -- Quantidade de likes, iniciando em 0
-=======
-    likes INT DEFAULT 0, 
->>>>>>> fcb7f8c742156e0491883f7705114b80bc058269:dália/BackEnd/Dalia.sql
+    likes INT DEFAULT 0,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
@@ -65,8 +52,4 @@ CREATE TABLE comentarios (
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
-<<<<<<< HEAD:dália/BackEnd/Dalia.db
 );
-=======
-);
->>>>>>> fcb7f8c742156e0491883f7705114b80bc058269:dália/BackEnd/Dalia.sql

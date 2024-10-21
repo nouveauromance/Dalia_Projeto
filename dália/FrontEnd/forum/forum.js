@@ -114,10 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     postElement.classList.add("Post");
     postElement.setAttribute("data-id", postId);
     postElement.innerHTML = `
-        <div class="post__perfil">
-            <img src="/img/home/Medica.png" alt="Foto de perfil" class="foto__perfil">
-            <p class="nome__perfil">Ana Beatriz</p>
-        </div>
         <div class="Post__text">
             <h3 class="post-title">${title}</h3>
             <p class="text__content">${content}</p>
@@ -125,18 +121,18 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="post__interact">
             <div class="input--send">
                 <input type="text" class="input__interact comment-input" placeholder="Escreva seu comentário">
-                <img src="img/Send.svg" alt="Enviar" class="send__icon">
+                <img src="./img/forum_img/Send.svg" alt="Enviar" class="send__icon">
             </div>
             <div class="post__icons">
                 <label class="interact__like">
                     <div class="like__content">
-                        <img src="img/Heart - outlined.svg" alt="Coração Contornado" class="heart">
+                        <img src="./img/forum_img/Heart - outlined.svg" alt="Coração Contornado" class="heart">
                         <p class="like__count">${likes}</p>
                     </div>
                 </label>
                 <label class="comment__interact">
                     <div class="comment__content">
-                        <img src="img/Comments.svg" alt="comentários" class="comment__img">
+                        <img src="./img/forum_img/Comments.svg" alt="comentários" class="comment__img">
                     </div>
                 </label>
             </div>
@@ -168,9 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
           await addCommentToPost(comment);
           const newComment = document.createElement("div");
           newComment.classList.add("comment");
-          newComment.innerHTML = `
-										<p><span class="comment-author">Você</span>: <span class="comment-text">${commentText}</span></p>
-								`;
+          newComment.innerHTML = `<p><span class="comment-author">Você</span>: <span class="comment-text">${commentText}</span></p>`;
           commentsList.appendChild(newComment);
           commentInput.value = "";
         }
@@ -211,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const currentLikes = parseInt(likeCountElement.textContent);
         likeCountElement.textContent = currentLikes + 1;
-        heartIcon.src = "img/Heart - full.svg";
+        heartIcon.src = "./img/forum_img/Heart - full.svg";
       })
       .catch((error) => {
         console.error("Erro ao curtir o post:", error);
@@ -237,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let currentLikes = parseInt(likeCountElement.textContent);
         if (currentLikes > 0) {
           likeCountElement.textContent = currentLikes - 1;
-          heartIcon.src = "img/Heart - outlined.svg";
+          heartIcon.src = "./img/forum_img/Heart - outlined.svg";
         }
       })
       .catch((error) => {

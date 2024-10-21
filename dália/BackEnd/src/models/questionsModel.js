@@ -31,9 +31,15 @@ const updateQuestion = async (question, id) => {
     return updatedQuestion;
 };
 
+const menstruationDayPeriod = async ( id ) => {
+    const [questions] = await connection.execute("SELECT ultimo_dia_menstruacao, duracao_ciclo FROM pesquisas WHERE id = ?", [id]);
+    return questions;
+};
+
 module.exports = {
     getAllQuestions,
     createQuestion,
     deleteQuestion,
-    updateQuestion
+    updateQuestion,
+    menstruationDayPeriod
 };
