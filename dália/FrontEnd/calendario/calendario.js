@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         return;
     }
 
-    let menstruacaoAtiva = false; // Controle para saber se a menstruação está ativa
-    let eventos = []; // Armazena todos os eventos do calendário
+    let menstruacaoAtiva = false; 
+    let eventos = []; 
 
     try {
         const response = await fetch(`http://localhost:3333/menstruation/${idUser}`);
@@ -28,56 +28,52 @@ document.addEventListener('DOMContentLoaded', async function () {
                 if (!menstruacaoAtiva) {
                     const hoje = new Date();
                     const fimMenstruacao = new Date(hoje);
-                    fimMenstruacao.setDate(hoje.getDate() + 4); // Adiciona 4 dias
+                    fimMenstruacao.setDate(hoje.getDate() + 4); 
 
-                    // Adiciona o evento de menstruação
+                    
                     eventos.push({
                         title: 'Menstruação',
                         start: hoje.toISOString().split('T')[0],
-                        end: hoje.toISOString().split('T')[0], // Apenas um dia
+                        end: hoje.toISOString().split('T')[0], 
                         color: '#e57373',
                         rendering: 'background',
                         allDay: true
                     });
 
-                    menstruacaoAtiva = true; // Atualiza o status
-                    fimMenstruacaoBtn.style.display = 'block'; // Mostra o botão de fim da menstruação
+                    menstruacaoAtiva = true;
+                    fimMenstruacaoBtn.style.display = 'block';
                 }
 
-                // Recalcula todas as previsões após registrar a menstruação
                 atualizarPrevisoes();
-                renderizarCalendario(eventos); // Re-renderiza o calendário
+                renderizarCalendario(eventos); 
             });
 
             fimMenstruacaoBtn.addEventListener('click', function () {
                 if (menstruacaoAtiva) {
-                    // Remove o evento de menstruação atual
-                    eventos = eventos.filter(event => event.title !== 'Menstruação'); // Remove o evento de menstruação
-                    menstruacaoAtiva = false; // Atualiza o status
-                    fimMenstruacaoBtn.style.display = 'none'; // Esconde o botão de fim da menstruação
 
-                    // Define a nova data para a próxima menstruação
+                    eventos = eventos.filter(event => event.title !== 'Menstruação');
+                    menstruacaoAtiva = false; 
+                    fimMenstruacaoBtn.style.display = 'none';
+
                     const hoje = new Date();
-                    const duracaoCiclo = 28; // Pode ser alterado se necessário
+                    const duracaoCiclo = 28;
                     const novaMenstruacao = new Date(hoje);
                     const fimMenstruacao = new Date(novaMenstruacao);
-                    fimMenstruacao.setDate(novaMenstruacao.getDate() + 4); // Define a duração da menstruação
+                    fimMenstruacao.setDate(novaMenstruacao.getDate() + 4);
 
-                    // Adiciona um novo evento de menstruação para o próximo ciclo (1 dia)
                     eventos.push({
                         title: 'Menstruação',
                         start: novaMenstruacao.toISOString().split('T')[0],
-                        end: novaMenstruacao.toISOString().split('T')[0], // Apenas um dia
+                        end: novaMenstruacao.toISOString().split('T')[0],
                         color: '#e57373',
                         rendering: 'background',
                         allDay: true
                     });
 
-                    // Recalcula todas as previsões após finalizar a menstruação
                     atualizarPrevisoes(novaMenstruacao, duracaoCiclo);
                 }
 
-                renderizarCalendario(eventos); // Re-renderiza o calendário
+                renderizarCalendario(eventos);
             });
 
         } else {
@@ -88,7 +84,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     function renderizarCalendario(eventos) {
-        // Limpa o calendário existente
         calendarEl.innerHTML = '';
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -105,7 +100,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         });
 
-        calendar.render(); // Renderiza o calendário atualizado
+        calendar.render();
     }
 
     function calcularPeriodos(dataUltimaMenstruacao, duracaoCiclo) {
@@ -115,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         for (let i = 0; i < 12; i++) {
             const dataProximaMenstruacao = new Date(cicloAtual);
             const fimMenstruacao = new Date(dataProximaMenstruacao);
-            fimMenstruacao.setDate(fimMenstruacao.getDate() + 4); // Define a duração da menstruação
+            fimMenstruacao.setDate(fimMenstruacao.getDate() + 4);
 
             eventos.push({
                 title: 'Menstruação',
@@ -139,7 +134,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             const inicioFertil = new Date(ovulacao);
             inicioFertil.setDate(inicioFertil.getDate() - 5);
             const fimFertil = new Date(ovulacao);
-            fimFertil.setDate(fimFertil.getDate() + 2); // Define a fase fértil para durar 3 dias
+            fimFertil.setDate(fimFertil.getDate() + 2);
 
             eventos.push({
                 title: 'Fase Fértil',

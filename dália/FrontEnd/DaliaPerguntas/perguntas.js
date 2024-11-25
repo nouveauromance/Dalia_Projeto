@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 			if (response.ok) {
 				console.log("Respostas enviadas com sucesso!");
-				window.location.href = "/FrontEnd/forum/forum.html";
+				window.location.href = "/dália/FrontEnd/home/index.html";
 			} else {
 				console.error("Erro ao enviar as respostas");
 			}

@@ -1,4 +1,3 @@
-// Exemplo de recomendações para diferentes humores e sintomas
 const recommendations = {
     happy: ['Continue assim!', 'Pratique atividades que você ama!'],
     neutro: ['Tente fazer algo que te deixe feliz.', 'Uma caminhada pode ajudar!'],
@@ -10,7 +9,6 @@ const recommendations = {
     inchaço: ['Beba bastante água.', 'Evite alimentos muito salgados.']
 };
 
-// Função para atualizar as recomendações
 function recommendHabits() {
     const selectedMood = document.querySelector('.mood-options input[type="radio"]:checked');
     const selectedSymptoms = document.querySelectorAll('.sintomas .sintoma.selected');
@@ -18,19 +16,16 @@ function recommendHabits() {
 
     let allRecommendations = [];
 
-    // Recomendações baseadas no humor
     if (selectedMood) {
         const moodValue = selectedMood.value;
         allRecommendations = allRecommendations.concat(recommendations[moodValue] || []);
     }
 
-    // Recomendações baseadas nos sintomas selecionados
     selectedSymptoms.forEach(symptom => {
         const symptomValue = symptom.value;
         allRecommendations = allRecommendations.concat(recommendations[symptomValue] || []);
     });
 
-    // Recomendações baseadas no fluxo menstrual
     if (flowLevel === 'high') {
         allRecommendations = allRecommendations.concat(['Descansar mais', 'Evitar atividades físicas intensas']);
     } else if (flowLevel === 'medium') {
@@ -39,28 +34,23 @@ function recommendHabits() {
         allRecommendations = allRecommendations.concat(['Beber mais água', 'Descansar']);
     }
 
-    // Remover recomendações duplicadas e atualizar a interface
     const uniqueRecommendations = [...new Set(allRecommendations)];
     const recommendationsList = uniqueRecommendations.map(recommendation => `<li>${recommendation}</li>`).join('');
 
     document.getElementById('recommended-habits').innerHTML = `<ul>${recommendationsList}</ul>`;
 }
 
-// Função para adicionar/remover sintomas selecionados
 document.querySelectorAll('.sintoma').forEach(button => {
     button.addEventListener('click', function() {
         this.classList.toggle('selected');
-        recommendHabits();  // Atualiza as recomendações ao selecionar sintomas
+        recommendHabits();
     });
 });
 
-// Adicionar evento de mudança para o nível de fluxo
 document.getElementById('flow-level').addEventListener('change', recommendHabits);
 
-// Adicionar evento de mudança para o humor
 document.querySelectorAll('.mood-options input[type="radio"]').forEach(radio => {
     radio.addEventListener('change', recommendHabits);
 });
 
-// Chamar recommendHabits ao carregar a página
 document.addEventListener('DOMContentLoaded', recommendHabits);

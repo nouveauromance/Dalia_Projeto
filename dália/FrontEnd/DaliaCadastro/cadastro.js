@@ -13,7 +13,7 @@ async function sendData(userData) {
 
 		if (response.status === 201) {
 			alert("Dados salvos com sucesso!");
-			window.location.href = "/FrontEnd/DaliaLogin/login.html";
+			window.location.href = "/dália/FrontEnd/DaliaLogin/login.html";
 		} else {
 			console.error("Erro ao salvar os dados:", responseData);
 			alert("Erro ao salvar os dados. Por favor, tente novamente.");
