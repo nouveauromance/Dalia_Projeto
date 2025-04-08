@@ -19,7 +19,7 @@ gestacional.
 💕 A nova funcionalidade de acompanhamento gestacional vai contar com acompanhamento do bebê, dicas valiosas, 
 registro diário e auxílio para as mães.
 
-🎌 O projeto também está contando com atualizações em seu backend (Java com Springboot, Banco de Dados MongoDB).
+🎌 O projeto também está contando com atualizações/alterações em seu backend (Java com Springboot, MongoDB).
 
 ## Instalação:
 
