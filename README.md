@@ -11,13 +11,15 @@ auxílio para mulheres em situação de risco.
 período gestacional), além de um sistema/botão de alerta para ajuda às mulheres em situações de risco
 (abuso físico ou mental, agressão ou qualquer situação de perigo).
 
-### Novas funcionalidades:
+### Novas funcionalidades/implementações:
 
-🌱 Atualmente, o projeto se encontra em desenvolvimento e implementação de uma nova funcionalidade: acompanhamento
+🌱 Atualmente, o projeto se encontra em desenvolvimento de novas funcionalidades: acompanhamento
 gestacional.
 
-💕 A nova funcionalidade vai contar com acompanhamento do bebê, dicas valiosas, registro diário e auxílio para 
-as mães.
+💕 A nova funcionalidade de acompanhamento gestacional vai contar com acompanhamento do bebê, dicas valiosas, 
+registro diário e auxílio para as mães.
+
+🎌 O projeto também está contando com atualizações em seu backend (Java com Springboot, Banco de Dados MongoDB).
 
 ## Instalação:
 
@@ -33,3 +35,5 @@ as mães.
 - [@Rayane](https://github.com/RayaneBarrosM)
 
 📍 Fatec Diadema Luigi Papaiz 
+
+⚠️ Todos os direitos reservados à equipe Dália
