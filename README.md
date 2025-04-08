@@ -7,7 +7,7 @@
 🌺 Dália se trata de um sistema em desenvolvimento de calendário menstrual e gestacional com
 auxílio para mulheres em situação de risco.
 
-📰 Auxilia mulheres com informações, dicas valiosas, apoio, acompanhamento (seja do clico menstrual ou
+📰 Auxilia mulheres com informações, dicas valiosas, apoio, acompanhamento (seja do ciclo menstrual ou
 período gestacional), além de um sistema/botão de alerta para ajuda às mulheres em situações de risco
 (abuso físico ou mental, agressão ou qualquer situação de perigo).
 
