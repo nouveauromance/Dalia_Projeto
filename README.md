@@ -19,7 +19,7 @@ gestacional.
 💕 A nova funcionalidade vai contar com acompanhamento do bebê, dicas valiosas, registro diário e auxílio para 
 as mães.
 
-## Instalação
+## Instalação:
 
 📌 Instale clonando o repositório
     
