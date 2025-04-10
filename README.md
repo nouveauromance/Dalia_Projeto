@@ -28,8 +28,8 @@ registro diário e auxílio para as mães.
 ## Autores (equipe Dália)
 
 - [@Ana Beatriz](https://github.com/ana-bia07)
-- [@Diovanni](https://github.com/)
-- [@Felipe](https://github.com/)
+- [@Diovanni](https://github.com/Diovanni-ls)
+- [@Felipe](https://github.com/Felipelan)
 - [@Guilherme](https://github.com/GuilhermeSouza198)
 - [@Natali](https://github.com/nouveauromance)
 - [@Rayane](https://github.com/RayaneBarrosM)
