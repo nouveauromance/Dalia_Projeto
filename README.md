@@ -1,4 +1,4 @@
-# Projeto Dália (2024 - 2025)
+# Projeto Dália (2024)
 
 🔎 Este repositório contém todo o desenvolvimento atualizado do projeto Dália.
 
